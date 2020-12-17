@@ -1,0 +1,31 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        #if len(strs) == 0 or len(strs) == 1:
+         #   print(list(strs))
+         #   return (list(list("")))
+        alphabets = string.ascii_lowercase
+        alphabet= {}
+        i = 0
+        mylist = []
+        for a in alphabets:
+            alphabet[a] = i+1
+            i = i+1
+            
+        d ={}
+        for s in strs:
+            val = self.getSum(s,alphabet) 
+            #print (val,d,s)
+            if val in d:
+                d[val].append(s)
+            else:
+                d[val] = [s]
+        print(d.values())
+        return d.values()
+    def getSum(self,s,alphabet):
+        
+        #print (d)
+        sum1 = 0
+        for i in s:
+            sum1 += alphabet[i]
+            #print(sum1)
+        return sum1
