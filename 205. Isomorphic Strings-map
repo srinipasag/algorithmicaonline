@@ -1,0 +1,23 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+       
+        if not s or not t:
+            return True
+        d ={}
+        for i,c in enumerate(s):
+            if c in d:
+                d[c].append(i)
+            else:
+                d[c] = [i]
+        #print(list(d.values()))
+        d1 ={}
+        for i,c in enumerate(t):
+            if c in d1:
+                d1[c].append(i)
+            else:
+                d1[c] = [i]
+        #print(list(d1.values()))
+        
+        return (list(d1.values()) == list(d.values()))
