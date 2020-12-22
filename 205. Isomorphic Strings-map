@@ -21,3 +21,21 @@ class Solution:
         #print(list(d1.values()))
         
         return (list(d1.values()) == list(d.values()))
+
+Solution2:
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        map1 = {}
+        map2 = {}
+        
+        if len(s) != len(t):
+            return False
+        for i in range(len(s)):
+            if s[i] not in map1:
+                map1[s[i]] = t[i]
+            if t[i] not in map2:
+                map2[t[i]] = s[i]
+            if map1[s[i]] != t[i] or map2[t[i]] != s[i]:
+                return False
+        return True
