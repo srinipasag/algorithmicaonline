@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+import collections
+class Solution:
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        q = deque([root])
+        
+        while q:
+            result = q[0]
+            print(result.val,len(q))
+            for i in range(len(q)):
+                cur = q.popleft()
+                #print(cur.left.val,cur.right.val)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            
+        #print(result.val)
+        return result.val
+        
+        
+
+    
