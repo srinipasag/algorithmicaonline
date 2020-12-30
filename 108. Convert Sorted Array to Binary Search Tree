@@ -1,0 +1,42 @@
+lass Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        def buildBST(l,r,nums):
+            
+            if l>r:
+                return None
+            if l == r:
+                return TreeNode(nums[l])
+            mid = (l+r)//2
+            root = TreeNode(nums[mid])
+            #print (mid,nums[mid],root,l,r)
+            root.left = buildBST(l,mid-1,nums)
+            root.right = buildBST(mid+1,r,nums)
+            return root
+        if not nums: 
+            return None
+        return buildBST(0,len(nums)-1,nums)
+"""
+   
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        def inner(nums,start,end):
+            
+            # Just like mergesort keep diving in half
+            # divide and conquer strat
+            if start<=end:
+            
+                mid = (start+end)//2
+
+                # middle always first, then its left pointer
+                # is middle of left partition and right middle
+                # of right partition
+                node = TreeNode(nums[mid])
+                node.left  = inner(nums,start,mid-1) 
+                node.right = inner(nums,mid+1,end)
+
+                return node
+        
+        if not nums: 
+            return None
+        return inner(nums,0,len(nums)-1)
+"""
