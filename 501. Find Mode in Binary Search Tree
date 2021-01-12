@@ -1,0 +1,45 @@
+501. Find Mode in Binary Search Tree
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        def findDups(root,val):
+            if not root:
+                return []
+            findDups(root.left,root.val)
+            #findDups(root.left) 
+            
+            if root.val == self.pre.val:
+                self.count+= 1
+            else:
+                self.count = 1
+            #print("-->",root.val,self.pre.val,self.count,self.mode,self.l)
+
+            if self.count > self.mode:
+                self.mode = self.count 
+                self.l = [root.val]
+                #print("l",self.l)
+            elif self.count == self.mode:
+                self.l.append(root.val)
+                
+            self.pre = root   
+            #print("calling right",self.l)
+            findDups(root.right,root.val)
+            #findDups(root.right)
+
+            return self.l
+        
+        self.count = 0
+        self.mode = 0
+        self.l =[]
+        self.pre = TreeNode(float('inf'))
+        return findDups(root, float('inf'))
+        
+        #findDups(root)
+        return self.l
